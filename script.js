@@ -97,18 +97,10 @@ function calculateManpower() {
     const totalDeficitSurplusManhours = totalAvailableManhours - adjustedTotalTimeReporting;
     const totalDeficitSurplusManpower = totalDeficitSurplusManhours / assumptions.manhours;
 
-    document.getElementById('result').innerHTML = `
+    const resultDiv = document.getElementById('result');
+    resultDiv.innerHTML = `
         <h2>Results</h2>
-        <p>Total available manhours per month: ${totalAvailableManhours.toFixed(2)}</p>
-        <p>Time required for simple CT reporting: ${timeSimpleCT.toFixed(2)}</p>
-        <p>Time required for complex CT reporting: ${timeComplexCT.toFixed(2)}</p>
-        <p>Total time required for CT per month: ${totalTimeCT.toFixed(2)}</p>
-        <p>Time required for simple MRI reporting: ${timeSimpleMRI.toFixed(2)}</p>
-        <p>Time required for complex MRI reporting: ${timeComplexMRI.toFixed(2)}</p>
-        <p>Total time required for MRI per month: ${totalTimeMRI.toFixed(2)}</p>
-        <p>Total time required for reporting per month: ${totalTimeReporting.toFixed(2)}</p>
-        <p>Adjusted total time required for reporting per month: ${adjustedTotalTimeReporting.toFixed(2)}</p>
-        <p>Total deficit or surplus of manhours per month: ${totalDeficitSurplusManhours.toFixed(2)}</p>
-        <p>Total deficit or surplus manpower required: ${totalDeficitSurplusManpower.toFixed(2)}</p>
+        <p class="${totalDeficitSurplusManhours >= 0 ? 'surplus' : 'deficit'}">Total deficit or surplus of manhours per month: ${totalDeficitSurplusManhours.toFixed(2)}</p>
+        <p class="${totalDeficitSurplusManpower >= 0 ? 'surplus' : 'deficit'}">Total deficit or surplus manpower required: ${totalDeficitSurplusManpower.toFixed(2)}</p>
     `;
 }
