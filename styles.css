@@ -212,3 +212,29 @@ button:hover {
     display: inline;
     white-space: nowrap;
 }
+
+/* New styles added as requested */
+#deficit-options label {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    margin-bottom: 10px;
+}
+
+#deficit-options .additional-text {
+    font-size: 12px;
+    color: #666;
+    margin-left: 5px;
+}
+
+#deficit-options .radio-group {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    margin-bottom: 10px;
+    white-space: nowrap;
+}
+
+#deficit-options .radio-group label {
+    margin-left: 5px;
+}
