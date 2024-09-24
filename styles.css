@@ -108,16 +108,6 @@ button:hover {
     background-color: #0056b3;
 }
 
-#results {
-    background-color: #e9e9e9;
-    padding: 15px;
-    border-radius: 4px;
-}
-
-#results p {
-    margin: 10px 0;
-}
-
 #result {
     margin-top: 20px;
     padding: 15px;
@@ -137,14 +127,16 @@ button:hover {
     font-weight: bold;
 }
 
-.radio-group {
+#deficit-options .radio-group {
     display: flex;
     align-items: center;
-    margin-bottom: 5px;
+    justify-content: flex-start;
+    margin-bottom: 10px;
+    white-space: nowrap;
 }
 
-.radio-group input {
-    margin-right: 5px;
+#deficit-options .radio-group label {
+    margin-left: 5px;
 }
 
 .additional-result {
