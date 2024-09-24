@@ -18,13 +18,23 @@
         <div id="assumptions" class="page">
             <h2>Basic Assumptions</h2>
             <form id="assumptions-form">
-                <!-- Assumption form fields -->
+                <div class="form-group">
+                    <label for="manhours">Available manhours per month:</label>
+                    <input type="number" id="manhours" required>
+                    <span class="assumption-comment">Assuming 8 hours per day, 25 working days per month</span>
+                </div>
+                <!-- Add other assumption form fields here -->
+                <button type="button" onclick="saveAssumptions()">Save Assumptions</button>
             </form>
         </div>
         <div id="dynamic" class="page">
             <h2>Dynamic Inputs</h2>
             <form id="dynamic-form">
-                <!-- Dynamic input fields -->
+                <div class="form-group">
+                    <label for="consultants">Total no. of consultants:</label>
+                    <input type="number" id="consultants" required>
+                </div>
+                <!-- Add other dynamic input fields here -->
                 <div id="deficit-options" class="form-group" style="display: none;">
                     <label>Who are you planning to hire?</label>
                     <div class="radio-group">
