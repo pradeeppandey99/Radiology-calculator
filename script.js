@@ -65,6 +65,10 @@ function loadAssumptions() {
     document.getElementById('seasonalAdjustment').value = assumptions.seasonalAdjustment * 100;
 }
 
+function showAdditionalInput(show) {
+    document.getElementById('additionalRegistrarsInput').style.display = show ? 'block' : 'none';
+}
+
 function calculateManpower() {
     const assumptions = {
         manhours: parseFloat(document.getElementById('manhours').value) || 0,
@@ -103,4 +107,30 @@ function calculateManpower() {
         <p class="${totalDeficitSurplusManhours >= 0 ? 'surplus' : 'deficit'}">Total deficit or surplus of manhours per month: ${totalDeficitSurplusManhours.toFixed(2)}</p>
         <p class="${totalDeficitSurplusManpower >= 0 ? 'surplus' : 'deficit'}">Total deficit or surplus manpower required: ${totalDeficitSurplusManpower.toFixed(2)}</p>
     `;
+
+    const deficitOptionsDiv = document.getElementById('deficit-options');
+    if (totalDeficitSurplusManhours < 0) {
+        deficitOptionsDiv.style.display = 'block';
+    } else {
+        deficitOptionsDiv.style.display = 'none';
+    }
+
+    const hireOption = document.querySelector('input[name="hireOption"]:checked');
+    if (hireOption) {
+        let additionalRegistrars = 0;
+        let additionalDoctors = 0;
+        if (hireOption.value === 'registrars') {
+            additionalRegistrars = Math.abs(totalDeficitSurplusManhours) / (assumptions.registrarTime * assumptions.manhours);
+            resultDiv.innerHTML += `<p class="additional-result">Additional registrars required: ${additionalRegistrars.toFixed(1)}</p>`;
+        } else if (hireOption.value === 'doctors') {
+            additionalDoctors = Math.abs(totalDeficitSurplusManhours) / (assumptions.consultantTime * assumptions.manhours);
+            resultDiv.innerHTML += `<p class="additional-result">Additional doctors required: ${additionalDoctors.toFixed(1)}</p>`;
+        } else if (hireOption.value === 'mix') {
+            const additionalRegistrarsInput = parseFloat(document.getElementById('additionalRegistrars').value) || 0;
+            const remainingManhours = Math.abs(totalDeficitSurplusManhours) - (additionalRegistrarsInput * assumptions.registrarTime * assumptions.manhours);
+            additionalDoctors = remainingManhours / (assumptions.consultantTime * assumptions.manhours);
+            resultDiv.innerHTML += `<p class="additional-result">Additional registrars required: ${additionalRegistrarsInput.toFixed(1)}</p>`;
+            resultDiv.innerHTML += `<p class="additional-result">Additional doctors required: ${additionalDoctors.toFixed(1)}</p>`;
+        }
+    }
 }
