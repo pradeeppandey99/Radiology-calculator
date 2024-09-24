@@ -16,11 +16,28 @@ function showPage(pageId) {
 }
 
 function saveAssumptions() {
-    // Save assumptions logic
+    const assumptions = {
+        manhours: parseFloat(document.getElementById('manhours').value) || 0,
+        // Add other assumption values here
+    };
+    localStorage.setItem('assumptions', JSON.stringify(assumptions));
+    alert('Assumptions saved successfully!');
 }
 
 function loadAssumptions() {
-    // Load assumptions logic
+    let assumptions = JSON.parse(localStorage.getItem('assumptions'));
+    if (!assumptions) {
+        // Default assumptions if none are saved
+        assumptions = {
+            manhours: 200,
+            // Add other default assumption values here
+        };
+        localStorage.setItem('assumptions', JSON.stringify(assumptions));
+    }
+
+    // Fill in the form with the loaded or default assumptions
+    document.getElementById('manhours').value = assumptions.manhours;
+    // Set other assumption fields
 }
 
 function showAdditionalInput(show) {
@@ -28,5 +45,8 @@ function showAdditionalInput(show) {
 }
 
 function calculateManpower() {
-    // Calculate manpower logic
+    // Implement the manpower calculation logic here
+    // You can access the input values from the HTML form elements
+    // and perform the necessary calculations
+    // Update the #result element with the calculated values
 }
