@@ -127,6 +127,16 @@ button:hover {
     font-size: 14px;
 }
 
+.surplus {
+    color: green;
+    font-weight: bold;
+}
+
+.deficit {
+    color: red;
+    font-weight: bold;
+}
+
 /* Mobile-specific styles */
 @media (max-width: 600px) {
     .container {
